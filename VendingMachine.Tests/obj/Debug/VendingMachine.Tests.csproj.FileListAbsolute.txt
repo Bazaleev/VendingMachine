@@ -1,0 +1,8 @@
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\bin\Debug\VendingMachine.Tests.dll
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\bin\Debug\VendingMachine.Tests.pdb
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\bin\Debug\VendingMachine.exe
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\bin\Debug\VendingMachine.pdb
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\obj\Debug\VendingMachine.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\obj\Debug\VendingMachine.Tests.dll
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\obj\Debug\VendingMachine.Tests.pdb
