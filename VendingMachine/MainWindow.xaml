@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="436.017" Width="525">
     <Grid>
-        
+        <DataGrid x:Name="customerWallet" HorizontalAlignment="Stretch" Margin="10,30,10,0" VerticalAlignment="Top" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+                <DataGridTemplateColumn Header="" Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="Pay" Click="Pay_Click" Content="Pay" DataContext="{Binding Value}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="vendingMachineWallet" HorizontalAlignment="Stretch" Margin="10,180,10,0" VerticalAlignment="Top" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="label" Content="Кошелек пользователя" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Width="172"/>
+        <Label x:Name="label1" Content="Внесенная сумма" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="receivedMoneyButton" HorizontalAlignment="Left" Height="23" Margin="120,10,10,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="120"/>
+        <Label x:Name="label2" Content="Кошелек автомата" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Width="172"/>
+        <TextBox x:Name="changeTextBox" HorizontalAlignment="Left" Height="23" Margin="331,10,10,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="180"/>
+        <Button x:Name="change" Content="Выдать сдачу" Click="change_Click" HorizontalAlignment="Left" Margin="245,10,10,10" VerticalAlignment="Bottom" Width="81"/>
+
     </Grid>
 </Window>

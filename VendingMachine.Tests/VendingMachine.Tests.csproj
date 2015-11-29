@@ -55,6 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ChangeCalculatorTests.cs" />
     <Compile Include="CointTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleCurrenctyWalletTests.cs" />

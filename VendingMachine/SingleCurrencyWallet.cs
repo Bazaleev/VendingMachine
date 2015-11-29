@@ -42,6 +42,7 @@
 
             _currency = regionInfo.ISOCurrencySymbol;
             _regionInfo = regionInfo;
+            ChangeCalculator = new ChangeCalculator();
         }
 
         /// <summary>

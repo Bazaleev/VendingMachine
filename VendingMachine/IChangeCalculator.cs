@@ -13,6 +13,6 @@
         /// <param name="moneys">input amount of money - dictionary where key - denomination, value - units amount</param>
         /// <param name="sum">sum that should be composed</param>
         /// <returns>dictionary where key - denomination and value - amount</returns>
-        IDictionary<decimal, int> Calculate(IDictionary<decimal, int> moneys, decimal sum);
+        IDictionary<decimal, int> Calculate(IDictionary<decimal, int> money, decimal sum);
     }
 }
