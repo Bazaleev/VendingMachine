@@ -36,8 +36,8 @@
         /// </summary>
         /// <param name="coin">coin to remove</param>
         /// <returns>removed coin</returns>
-        /// <exceprion cref="InvalidOperationException">throws exceprion if specified coins is absent</exceprion>
-        public Coin Pop(Coin coin)
+        /// <exceprion cref="InvalidOperationException">is thrown if provided coins is absent</exceprion>
+        public virtual Coin Pop(Coin coin)
         {
             if (!_coins.ContainsKey(coin))
             {
@@ -51,7 +51,7 @@
         /// Adds coin to the wallet
         /// </summary>
         /// <param name="coin">coin to add</param>
-        public void Push(Coin coin)
+        public virtual void Push(Coin coin)
         {
             if (!_coins.ContainsKey(coin))
             {

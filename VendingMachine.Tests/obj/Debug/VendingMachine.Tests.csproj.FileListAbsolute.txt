@@ -6,3 +6,5 @@ C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMa
 C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\obj\Debug\VendingMachine.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\obj\Debug\VendingMachine.Tests.dll
 C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\obj\Debug\VendingMachine.Tests.pdb
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\bin\Debug\FakeItEasy.dll
+C:\Users\Bazaleev\documents\visual studio 2015\Projects\VendingMachine\VendingMachine.Tests\bin\Debug\FakeItEasy.xml
