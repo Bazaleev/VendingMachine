@@ -16,7 +16,8 @@
         private ISingleCurrencyWallet CustomerWallet { get; set; }
         private ISingleCurrencyWallet VendingMachineWallet { get; set; }
         private ISingleCurrencyWallet ReceivedMoney { get; set; }
-        private ICollection<Product> Products { get; set; }
+        private ICollection<Category> Categories { get; set; }
+        private IDictionary<Guid, int> ProductAmounts { get; set; }
 
         public MainWindow()
         {
@@ -25,6 +26,9 @@
             ReceivedMoney = new SingleCurrencyWallet(_currentRegion);
             CustomerWallet = InitCustomerWallet();
             VendingMachineWallet = InitVendingMachineWallet();
+            ProductAmounts = new Dictionary<Guid, int>();
+            Categories = new List<Category>();
+            InitCategories();
             RefreshData();
         }
 
@@ -36,6 +40,18 @@
             coins = VendingMachineWallet.GetCoinsAmount();
             vendingMachineWallet.ItemsSource = coins.Select(c => new { Name = c.Key.ToString(), Amount = c.Value, Value = c.Key.Denomination }).ToList();
             receivedMoneyButton.Text = ReceivedMoney.CalculateTotalSum().ToString();
+
+            products.ItemsSource = (from category in Categories
+                                    join pair in ProductAmounts on category.CategoryId equals pair.Key
+                                    let amount = pair.Value
+                                    select new
+                                    {
+                                        Name = category.Name,
+                                        Price = new Coin(category.Price, _currentRegion).ToString(),
+                                        Amount = amount,
+                                        CategoryId = category.CategoryId
+                                    }).ToList();
+
         }
 
         private ISingleCurrencyWallet InitCustomerWallet()
@@ -80,6 +96,49 @@
             return wallet;
         }
 
+        private void InitCategories()
+        {
+            var category = new Category(_currentRegion)
+            {
+                CategoryId = Guid.NewGuid(),
+                Name = "Чай",
+                Price = 13m
+            };
+
+            Categories.Add(category);
+            ProductAmounts.Add(category.CategoryId, 10);
+
+            category = new Category(_currentRegion)
+            {
+                CategoryId = Guid.NewGuid(),
+                Name = "Кофе",
+                Price = 18m
+            };
+
+            Categories.Add(category);
+            ProductAmounts.Add(category.CategoryId, 20);
+
+            category = new Category(_currentRegion)
+            {
+                CategoryId = Guid.NewGuid(),
+                Name = "Кофе с молоком",
+                Price = 21m
+            };
+
+            Categories.Add(category);
+            ProductAmounts.Add(category.CategoryId, 20);
+
+            category = new Category(_currentRegion)
+            {
+                CategoryId = Guid.NewGuid(),
+                Name = "Сок",
+                Price = 35m
+            };
+
+            Categories.Add(category);
+            ProductAmounts.Add(category.CategoryId, 15);
+        }
+
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -119,6 +178,52 @@
             }
 
             changeTextBox.Text = String.Join(",", change.Select(c => c.ToString()));
+            RefreshData();
+        }
+
+        private void Buy_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var categoryId = (Guid)button.DataContext;
+
+            var category = Categories.First(c => c.CategoryId == categoryId);
+            var balance = ReceivedMoney.CalculateTotalSum();
+
+            if (balance < category.Price)
+            {
+                MessageBox.Show("Недостаточно средств");
+                return;
+            }
+
+            if (ProductAmounts[categoryId] == 0)
+            {
+                return;
+            }
+
+            var change = balance - category.Price;
+            var coinsAmount = ReceivedMoney.GetCoinsAmount();
+            foreach (var pair in coinsAmount)
+            {
+                var coin = pair.Key;
+                var amount = pair.Value;
+                for (int i = 0; i < amount; i++)
+                {
+                    ReceivedMoney.Pop(coin);
+                    VendingMachineWallet.Push(coin);
+                }
+            }
+
+            if (change > 0)
+            {
+                var coins = VendingMachineWallet.Withdraw(change);
+                foreach (var coin in coins)
+                {
+                    ReceivedMoney.Push(coin);
+                }
+            }
+
+            ProductAmounts[categoryId]--;
+            MessageBox.Show("Спасибо!");
             RefreshData();
         }
     }

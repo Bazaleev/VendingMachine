@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine"
         mc:Ignorable="d"
-        Title="MainWindow" Height="436.017" Width="525">
+        Title="MainWindow" Height="574.582" Width="525">
     <Grid>
         <DataGrid x:Name="customerWallet" HorizontalAlignment="Stretch" Margin="10,30,10,0" VerticalAlignment="Top" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -24,6 +24,20 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="products" HorizontalAlignment="Stretch" Margin="10,340,10,0" VerticalAlignment="Top" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+                <DataGridTemplateColumn Header="" Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="Buy" Click="Buy_Click" Content="Buy" DataContext="{Binding CategoryId}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="label" Content="Кошелек пользователя" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Width="172"/>
